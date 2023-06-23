@@ -1,0 +1,24 @@
+
+
+    <div class="container">
+      <div class="panel panel-default col-md-6" style="position: absolute; top: 5%; right: 25%;">
+        <div class="panel-heading">瀏覽公佈事項</div>
+        <table class="table table-striped"  id="table_view_noti">
+          <thead>
+              <tr>
+                  <th data-field="title">標題</th>
+                  <th data-field="announceDate">發佈日期</th>
+                  <th data-field="expiryDate">截止日期</th>
+              </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let row of viewList">
+              <td>{{row.title}}</td>
+              <td>{{row.announceDate}}</td>
+              <td>{{row.expiryDate}}</td>
+
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
