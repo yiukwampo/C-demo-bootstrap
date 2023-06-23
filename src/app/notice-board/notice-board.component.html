@@ -12,7 +12,7 @@
               </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let row of viewList">
+            <tr *ngFor="let row of viewList" (click)="click(row)">
               <td>{{row.title}}</td>
               <td>{{row.announceDate}}</td>
               <td>{{row.expiryDate}}</td>
