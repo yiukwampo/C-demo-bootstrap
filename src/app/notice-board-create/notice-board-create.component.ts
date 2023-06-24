@@ -52,6 +52,10 @@ export class NoticeBoardCreateComponent {
        announceDateStr: this.date1 ? day1: null,
        expiryDateStr: this.date2 ? day2: null,
      };
+     if (!this.date1 || this.date2) {
+       alert('請填寫發佈日期及截止日期!')
+       return;
+     }
      alert(JSON.stringify(obj));
 
   }
