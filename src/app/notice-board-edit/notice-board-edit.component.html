@@ -1,7 +1,7 @@
 
     <div class="container">
       <div class="panel panel-default col-md-5" style="position: absolute; top: 5%; right: 25%;">
-          <div class="panel-heading">Edit公佈事項</div>
+          <div class="panel-heading">編輯公佈事項</div>
           <div class="panel-body">
             <div class="row justify-content-center my-5">
 
@@ -16,7 +16,7 @@
                       class="form-control"
                       [(ngModel)]="title"
                     />
-                    <label for="email" class="form-label">發佈日期:</label>
+                    <label for="issueDate" class="form-label">發佈日期:</label>
                       <div class="input-group date" id="datepicker1">
                         <input
                         class="form-control"
@@ -31,7 +31,7 @@
                       </div>
 
 
-                  <label for="email" class="form-label">截止日期:</label>
+                  <label for="dateline" class="form-label">截止日期:</label>
                   <div class="input-group date" id="datepicker2">
                     <input
                         class="form-control"
@@ -46,7 +46,18 @@
                   </div>
 
 
-                <label for="email" class="form-label">公佈者:</label>
+                <label for="issuePost" class="form-label">公佈者:
+
+                  <input
+                  pInputText
+                  type="text"
+                  id="name"
+                  placeholder=""
+                  class="form-control"
+                  [(ngModel)]="userPost"
+                  readonly="true"
+                />
+                </label>
 
                   <div></div>
                   <label for="email" class="form-label">公佈內容:</label>
@@ -62,6 +73,8 @@
 
                   <div class="text-center">
                     <button type="submit" class="btn btn-primary" (click)="update()">更新!</button>
+                    &nbsp;&nbsp;
+                    <button type="button" class="btn btn-primary" (click)="location.back()">返回!</button>
                   </div>
               </div>
             </div>

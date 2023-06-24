@@ -1,7 +1,7 @@
 export class Blog {
   messageId?: number;
   userId?: number;
-  userType?: string;
+  userPost?: string;
   title?: string;
   announceContent?: string | undefined;
   announceDate?: Date | undefined;

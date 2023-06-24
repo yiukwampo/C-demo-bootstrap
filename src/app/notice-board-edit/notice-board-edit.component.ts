@@ -5,7 +5,8 @@ import { BlogService } from '../service/base/notiMsg.service';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { HttpDataService } from '../service/base/httpData.service';
 import { Blog } from '../datamapping/Blog';
-import { DatePipe } from '@angular/common';
+import { DatePipe, Location } from '@angular/common';
+import { User } from '../datamapping/User';
 
 
 @Component({
@@ -22,9 +23,12 @@ export class NoticeBoardEditComponent {
   announceContent: string | undefined;
 	date1: NgbDateStruct | undefined;
 	date2: NgbDateStruct | undefined;
+  userId: number | undefined;
+  userPost: string | undefined;
 
   constructor(
     private router: Router,
+    public  location: Location,
     private datePipe: DatePipe,
     private blogService: BlogService,
     private http: HttpClient,
@@ -35,7 +39,14 @@ export class NoticeBoardEditComponent {
       this.http.get(window.location.protocol + '//' + window.location.hostname + ':8080/' + 'getContentByMessageId/' + this.messageId, {}).subscribe((r: Blog) => {
 
         setTimeout(() => {
-          //alert(JSON.stringify(r));
+          // alert(JSON.stringify(r));
+          this.userId = r?.userId;
+          this.http.get(window.location.protocol + '//' + window.location.hostname + ':8080/' + 'getUserByUserId/' + this.userId, {}).subscribe((u: User) => {
+            setTimeout(() => {
+              // alert(u?.userPost);
+              this.userPost = u?.userPost;
+            }, 200);
+          });
           this.title = r?.title;
           //this.date1 = r.announceDate ? this.datePipe.transform(r.announceDate, 'yyyy-MM-dd') : null;
           //const obj = { year: r?.announceDate?.getFullYear(), month: r?.announceDate?.getMonth(), day: r?.announceDate?.getDate() };
@@ -83,7 +94,7 @@ export class NoticeBoardEditComponent {
         announceDateStr: this.date1 ? day1: null,
         expiryDateStr: this.date2 ? day2: null,
       };
-      alert(JSON.stringify(obj))
+      // alert(JSON.stringify(obj))
       this.httpDataService.post(window.location.protocol + '//' + window.location.hostname + ':8080/' + 'updateBlogMessage', obj).subscribe((r: any) => {
         if (r) {
           setTimeout(() => {
