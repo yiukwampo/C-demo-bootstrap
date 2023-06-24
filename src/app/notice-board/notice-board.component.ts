@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { BlogService } from '../service/base/notiMsg.service';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { HttpDataService } from '../service/base/httpData.service';
 import { Blog } from '../datamapping/Blog';
+import { DatePipe, Location } from '@angular/common';
 @Component({
   selector: 'app-notice-board',
   templateUrl: './notice-board.component.html',
@@ -16,14 +17,21 @@ export class NoticeBoardComponent {
   selectedNoti: any = null;
 
   viewList = [] as Blog[];
+  eventUrl!: string;
 
   constructor(
-    private router: Router,
+    public router: Router,
     private blogService: BlogService,
     private http: HttpClient,
-
+    public location: Location,
   ) {
+    router.events.subscribe( (event) => {
+      if (event instanceof NavigationEnd) {
 
+        this.eventUrl = event['url'];
+
+      }
+  });
   }
 
   ngOnInit(): void {
@@ -42,5 +50,25 @@ export class NoticeBoardComponent {
     this.router.navigate(['edit/' + row?.messageId],
     {state : { messageId: row?.messageId}});
   }
+
+  deleteAnnounce() {
+    let messageIdList = [] as number[];
+    this.viewList?.forEach((r: Blog) => {
+      messageIdList.push(r?.messageId as number);
+    })
+    this.http.post(window.location.protocol + '//' + window.location.hostname + ':8080/' + 'deleteAllByMessageIdList', messageIdList).subscribe((r: any) => {
+        if (r) {
+          setTimeout(() => {
+           alert('Successfully deleted! ')
+           window.location.reload();
+          }, 200);
+        }
+      });
+    }
+
+    redirectTo(uri: string) {
+      this.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
+      this.router.navigate([uri]));
+    }
 
 }

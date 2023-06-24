@@ -21,5 +21,10 @@
           </tbody>
         </table>
         <div *ngIf="viewList.length == 0" [style]="{'color':'red','font-weight':'bold'}">無資料</div>
+    <div class="text-center">
+      <button type="submit" class="btn btn-primary" (click)="router.navigateByUrl('/create')">新增!</button>
+      &nbsp;&nbsp;
+      <button type="button" class="btn btn-primary" (click)="deleteAnnounce()">刪除!</button>
+    </div>
       </div>
     </div>

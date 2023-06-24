@@ -10,11 +10,13 @@ import { NgbAlertModule, NgbDatepickerModule, NgbDateStruct } from '@ng-bootstra
 import { FormsModule } from '@angular/forms';
 import { JsonPipe } from '@angular/common';``
 import { HttpClientModule } from '@angular/common/http';
+import { NoticeBoardCreateComponent } from './notice-board-create/notice-board-create.component';
 @NgModule({
   declarations: [
     AppComponent,
     NoticeBoardComponent,
     NoticeBoardEditComponent,
+    NoticeBoardCreateComponent,
   ],
   imports: [
     BrowserModule,

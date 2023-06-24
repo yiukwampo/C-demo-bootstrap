@@ -98,7 +98,7 @@ export class NoticeBoardEditComponent {
       this.httpDataService.post(window.location.protocol + '//' + window.location.hostname + ':8080/' + 'updateBlogMessage', obj).subscribe((r: any) => {
         if (r) {
           setTimeout(() => {
-           alert('Success!_+')
+           alert('Successfully update! ')
           }, 200);
         }
       });
