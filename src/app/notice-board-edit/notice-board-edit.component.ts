@@ -94,6 +94,10 @@ export class NoticeBoardEditComponent {
         announceDateStr: this.date1 ? day1: null,
         expiryDateStr: this.date2 ? day2: null,
       };
+      if (!this.date1 || this.date2) {
+        alert('請填寫發佈日期及截止日期!')
+        return;
+      }
       // alert(JSON.stringify(obj))
       this.httpDataService.post(window.location.protocol + '//' + window.location.hostname + ':8080/' + 'updateBlogMessage', obj).subscribe((r: any) => {
         if (r) {
