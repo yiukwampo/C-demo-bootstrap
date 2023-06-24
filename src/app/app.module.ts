@@ -8,15 +8,17 @@ import { NoticeBoardComponent } from './notice-board/notice-board.component';
 import { NoticeBoardEditComponent } from './notice-board-edit/notice-board-edit.component';
 import { NgbAlertModule, NgbDatepickerModule, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
-import { JsonPipe } from '@angular/common';
+import { JsonPipe } from '@angular/common';``
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
     NoticeBoardComponent,
-    NoticeBoardEditComponent
+    NoticeBoardEditComponent,
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     NgbModule,
     NgbDatepickerModule, NgbAlertModule, FormsModule, JsonPipe

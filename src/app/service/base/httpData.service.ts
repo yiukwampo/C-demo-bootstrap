@@ -9,7 +9,7 @@ export class HttpDataService {
   get spmApiHost(): string {
     return this._spmApiHost;
   }
-  private _spmApiHost = 'v1'
+  private _spmApiHost = ''
 
   constructor(private http: HttpClient) {
   }
@@ -23,6 +23,7 @@ export class HttpDataService {
   }
 
   get(url: string, body?: any): Observable<any> {
+    alert(url)
     return this.http
       .get<any>(this._spmApiHost + url, body)
       .pipe(catchError(this.handleError));
