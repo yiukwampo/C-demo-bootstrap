@@ -7,6 +7,7 @@ import { HttpDataService } from '../service/base/httpData.service';
 import { Blog } from '../datamapping/Blog';
 import { DatePipe, Location } from '@angular/common';
 import { User } from '../datamapping/User';
+import { ConstantsApi } from '../constants/constants-api';
 
 
 @Component({
@@ -35,13 +36,13 @@ export class NoticeBoardEditComponent {
     private httpDataService: HttpDataService
     ) {
       this.messageId = this.router.getCurrentNavigation()?.extras?.state?.['messageId'];
-      //alert(window.location.protocol + '//' + window.location.hostname + ':8080/' + 'getContentByMessageId/' + this.messageId)
-      this.http.get(window.location.protocol + '//' + window.location.hostname + ':8080/' + 'getContentByMessageId/' + this.messageId, {}).subscribe((r: Blog) => {
+      //alert(window.location.protocol + '//' + window.location.hostname + ConstantsApi.port + '/getContentByMessageId/' + this.messageId)
+      this.http.get(window.location.protocol + '//' + window.location.hostname + ConstantsApi.port + '/getContentByMessageId/' + this.messageId, {}).subscribe((r: Blog) => {
 
         setTimeout(() => {
           // alert(JSON.stringify(r));
           this.userId = r?.userId;
-          this.http.get(window.location.protocol + '//' + window.location.hostname + ':8080/' + 'getUserByUserId/' + this.userId, {}).subscribe((u: User) => {
+          this.http.get(window.location.protocol + '//' + window.location.hostname + ConstantsApi.port + '/getUserByUserId/' + this.userId, {}).subscribe((u: User) => {
             setTimeout(() => {
               // alert(u?.userPost);
               this.userPost = u?.userPost;
@@ -99,7 +100,7 @@ export class NoticeBoardEditComponent {
         return;
       }
       // alert(JSON.stringify(obj))
-      this.httpDataService.post(window.location.protocol + '//' + window.location.hostname + ':8080/' + 'updateBlogMessage', obj).subscribe((r: any) => {
+      this.httpDataService.post(window.location.protocol + '//' + window.location.hostname + ConstantsApi.port + '/updateBlogMessage', obj).subscribe((r: any) => {
         if (r) {
           setTimeout(() => {
            alert('Successfully update! ')

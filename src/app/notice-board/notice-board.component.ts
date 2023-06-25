@@ -5,6 +5,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { HttpDataService } from '../service/base/httpData.service';
 import { Blog } from '../datamapping/Blog';
 import { DatePipe, Location } from '@angular/common';
+import { ConstantsApi } from '../constants/constants-api';
 @Component({
   selector: 'app-notice-board',
   templateUrl: './notice-board.component.html',
@@ -35,7 +36,7 @@ export class NoticeBoardComponent {
   }
 
   ngOnInit(): void {
-    this.http.get(window.location.protocol + '//' + window.location.hostname + ':8080/' + 'getAllBlogMessage', {}).subscribe((r: any) => {
+    this.http.get(window.location.protocol + '//' + window.location.hostname + ConstantsApi.port + '/getAllBlogMessage', {}).subscribe((r: any) => {
 
         setTimeout(() => {
           this.viewList = r! as Blog[];
@@ -56,7 +57,7 @@ export class NoticeBoardComponent {
     this.viewList?.forEach((r: Blog) => {
       messageIdList.push(r?.messageId as number);
     })
-    this.http.post(window.location.protocol + '//' + window.location.hostname + ':8080/' + 'deleteAllByMessageIdList', messageIdList).subscribe((r: any) => {
+    this.http.post(window.location.protocol + '//' + window.location.hostname + ConstantsApi.port + '/deleteAllByMessageIdList', messageIdList).subscribe((r: any) => {
         if (r) {
           setTimeout(() => {
            alert('Successfully deleted! ')
