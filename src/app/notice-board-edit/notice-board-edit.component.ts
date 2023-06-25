@@ -95,10 +95,10 @@ export class NoticeBoardEditComponent {
         announceDateStr: this.date1 ? day1: null,
         expiryDateStr: this.date2 ? day2: null,
       };
-      if (!this.date1 || !this.date2) {
-        alert('請填寫發佈日期及截止日期!')
+      if (this.title?.trim()?.length == 0 || !this.date1 || !this.date2 || this.announceContent?.trim()?.length == 0) {
+        alert('請填寫所有欄位!')
         return;
-      }
+       }
       // alert(JSON.stringify(obj))
       this.httpDataService.post(window.location.protocol + '//' + window.location.hostname + ConstantsApi.port + '/updateBlogMessage', obj).subscribe((r: any) => {
         if (r) {
