@@ -23,7 +23,6 @@ export class HttpDataService {
   }
 
   get(url: string, body?: any): Observable<any> {
-    alert(url)
     return this.http
       .get<any>(this._spmApiHost + url, body)
       .pipe(catchError(this.handleError));

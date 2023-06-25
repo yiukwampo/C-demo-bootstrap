@@ -10,3 +10,10 @@ export class User {
   updateDate?: Date;
 
 }
+
+export class UserPostDropdownList {
+
+  userId?: number;
+  userPost?: string;
+
+}
